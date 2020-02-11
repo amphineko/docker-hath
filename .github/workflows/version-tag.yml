@@ -34,4 +34,4 @@ jobs:
           echo TAG=$TAG
           
           docker tag image $IMAGE_ID:$TAG
-          docker push $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$TAG
