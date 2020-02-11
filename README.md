@@ -38,6 +38,23 @@ You may use `-d` (detached) to leave it running in background
 
 ---
 
+You may find the images published on Github Packages are outdated
+
+Remove this line in your docker-compose.yml
+
+    image: docker.pkg.github.com/amphineko/hath-docker/hath:1.6.0
+
+And uncomment following lines to build the image locally
+
+    build:
+        args:
+            - version=1.6.0
+        context: hath
+
+Remember to replace `1.6.0` with the latest version number
+
+---
+
 The Docker image should restart automatically when it crashes or fails.
 
 However, Docker limits the maximum retries of restarting, so be alerted on HatH dashboard about your trust and quality in the first days.
