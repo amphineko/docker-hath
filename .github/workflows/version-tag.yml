@@ -5,13 +5,33 @@ on:
     branches:
       - gh-actions
       - master
+    tags:
+      - hath-*
 
 jobs:
   build:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
-      - run: |
+        
+      - name: Build image
+        run: |
           VERSION=1.6.0
           echo Building image for version $VERSION
           docker build hath --tag image --build-arg version=$VERSION
+          
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+        
+      - name: Push to Github Packages
+        run: |
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/hath
+          
+          TAG=1.6.0
+          [ "$TAG" == "master" ] && TAG=latest
+          
+          echo IMAGE_ID=$IMAGE_ID
+          echo TAG=$TAG
+          
+          docker tag image $IMAGE_ID:$TAG
+          docker push $IMAGE_ID:$VERSION
