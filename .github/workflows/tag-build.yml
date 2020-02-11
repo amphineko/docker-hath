@@ -1,0 +1,16 @@
+name: Build image by tag name
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          VERSION=${GITHUB_REF##*/}
+          echo Building image for version ${GITHUB_REF##*/}
+          docker build hath --tag image --build-arg version=$VERSION
