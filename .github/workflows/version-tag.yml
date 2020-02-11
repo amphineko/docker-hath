@@ -2,9 +2,6 @@ name: Build version tag
 
 on:
   push:
-    branches:
-      - gh-actions
-      - master
     tags:
       - hath-*
 
@@ -16,7 +13,7 @@ jobs:
         
       - name: Build image
         run: |
-          VERSION=1.6.0
+          VERSION=${GITHUB_REF#*hath-}
           echo Building image for version $VERSION
           docker build hath --tag image --build-arg version=$VERSION
           
@@ -26,9 +23,7 @@ jobs:
       - name: Push to Github Packages
         run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/hath
-          
-          TAG=1.6.0
-          [ "$TAG" == "master" ] && TAG=latest
+          TAG=${GITHUB_REF#*hath-}
           
           echo IMAGE_ID=$IMAGE_ID
           echo TAG=$TAG
