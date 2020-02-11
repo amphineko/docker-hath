@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          VERSION=v1.6.0
+          VERSION=1.6.0
           echo Building image for version $VERSION
           docker build hath --tag image --build-arg version=$VERSION
