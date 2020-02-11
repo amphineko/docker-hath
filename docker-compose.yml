@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+        hath:
+                build:
+                        args:
+                                - version=1.6.0
+                        context: hath
+                ports:
+                        - "4284:4284"
+                restart: always
+                volumes:
+                        - "./volumes/cache:/hath/cache"
+                        - "./volumes/data:/hath/data"
+                        - "./volumes/download:/hath/download"
+                        - "./volumes/log:/hath/log"
+                        - "./volumes/tmp:/hath/tmp"
