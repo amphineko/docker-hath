@@ -1,0 +1,17 @@
+name: Build version tag
+
+on:
+  push:
+    branches:
+      - gh-actions
+      - master
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          VERSION=v1.6.0
+          echo Building image for version $VERSION
+          docker build hath --tag image --build-arg version=$VERSION
