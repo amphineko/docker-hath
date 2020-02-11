@@ -2,10 +2,7 @@ version: '3'
 
 services:
         hath:
-                build:
-                        args:
-                                - version=1.6.0
-                        context: hath
+                image: docker.pkg.github.com/amphineko/hath-docker/hath:1.6.0
                 ports:
                         - "4284:4284"
                 restart: always
