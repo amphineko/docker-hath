@@ -1,0 +1,32 @@
+name: Build hath-version tag
+
+on:
+  push:
+    tags:
+      - hath-*
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Build image
+        run: |
+          VERSION=${GITHUB_REF#*hath-}
+          echo Building image for version $VERSION
+          docker build hath --tag image --build-arg version=$VERSION
+          
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+        
+      - name: Push to Github Packages
+        run: |
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/hath
+          TAG=${GITHUB_REF#*hath-}
+          
+          echo IMAGE_ID=$IMAGE_ID
+          echo TAG=$TAG
+          
+          docker tag image $IMAGE_ID:$TAG
+          docker push $IMAGE_ID:$TAG
