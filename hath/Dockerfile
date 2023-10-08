@@ -17,6 +17,6 @@ RUN chmod +x /docker-entrypoint.sh
 
 WORKDIR /hath
 
-ENTRYPOINT /sbin/tini -- /docker-entrypoint.sh
+ENTRYPOINT /sbin/tini /bin/sh -- /docker-entrypoint.sh
 
 VOLUME ["/hath/cache", "/hath/data", "/hath/download", "/hath/log", "/hath/tmp"]
