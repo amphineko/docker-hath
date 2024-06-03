@@ -29,7 +29,9 @@ jobs:
         uses: docker/metadata-action@v5.5.0
         with:
           images: |
-            ghcr.io/${{ github.repository }}
+            ghcr.io/amphineko/hatd/hath
+          file: |
+            {context}/hath/Dockerfile
           tags: |
             type=schedule
             type=ref,event=branch
