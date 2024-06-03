@@ -2,8 +2,8 @@ FROM alpine:3.12
 
 RUN apk add --no-cache openjdk11-jre-headless tini
 
-ARG HATH_PKG="https://repo.e-hentai.org/hath/HentaiAtHome_1.6.2.zip"
-ARG HATH_SHA256="bb21adeb38e48aeb1892b5cbe603bfeea2c1d653c3d9fafc9e1b336ec0d32dda"
+ARG HATH_PKG="https://repo.e-hentai.org/hath/HentaiAtHome_1.6.3.zip"
+ARG HATH_SHA256="55c4360fc3d635e86e08e87aebcda97aecbda3102279d41d753e7452da7c958f"
 
 ENV HATH_PKG=${HATH_PKG}
 ENV HATH_SHA256=${HATH_SHA256}
