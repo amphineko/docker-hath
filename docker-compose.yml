@@ -1,22 +1,17 @@
-version: '3'
+version: "3"
 
 services:
-        hath:
-                build:
-                        args:
-                                HATH_PKG: https://repo.e-hentai.org/hath/HentaiAtHome_1.6.2.zip
-                                HATH_SHA256: bb21adeb38e48aeb1892b5cbe603bfeea2c1d653c3d9fafc9e1b336ec0d32dda
-                        context: hath
-                image: ghcr.io/amphineko/hatd/hath:1.6.2
-                environment:
-                        CLIENT_ID: 0
-                        CLIENT_KEY: undefined
-                ports:
-                        - "443:443"
-                restart: unless-stopped
-                volumes:
-                        - "./volumes/cache:/hath/cache"
-                        - "./volumes/data:/hath/data"
-                        - "./volumes/download:/hath/download"
-                        - "./volumes/log:/hath/log"
-                        - "./volumes/tmp:/hath/tmp"
+  hath:
+    image: ghcr.io/amphineko/hatd/hath
+    environment:
+      CLIENT_ID: 0
+      CLIENT_KEY: undefined
+    ports:
+      - "443:443"
+    restart: unless-stopped
+    volumes:
+      - "./volumes/cache:/hath/cache"
+      - "./volumes/data:/hath/data"
+      - "./volumes/download:/hath/download"
+      - "./volumes/log:/hath/log"
+      - "./volumes/tmp:/hath/tmp"

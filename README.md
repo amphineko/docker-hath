@@ -28,14 +28,14 @@ Then configure your H@H credential environment variables in `docker-compose.yml`
             CLIENT_KEY: undefined
     ...
 
-For example, while your **Client ID** is `114514` with **Client Key** `95iIdOm7TVxuCKYk7gue`, your `docker-compose.yml` should be configured like this:
+For example, while your **Client ID** is `114514` with **Client Key** `MTE0NTE0`, your `docker-compose.yml` should be configured like this:
 
     > vi docker-compose.yml
 
     ...
         environment:
             CLIENT_ID: 114514
-            CLIENT_KEY: 95iIdOm7TVxuCKYk7gue
+            CLIENT_KEY: MTE0NTE0
     ...
 
 You might also need to configure your listening port to fit your need. Both of the numbers separated by the colon should be modified. Also check [Compose file reference](https://docs.docker.com/compose/compose-file/#ports) for how to configure it.
